@@ -4,4 +4,4 @@
 # //////////////////////////////////////////////////////////
 
 def print_desc(description:str):
-    print(f"{f' {description} ':*^80}\n")
+    print(f"{f' {description} ':*^100}\n")
