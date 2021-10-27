@@ -8,9 +8,13 @@ import utl
 # //// CLASSES /////////////////////////////////////////////
 
 class BankAccount:
+    all_accounts = []
+
     def __init__(self, int_rate=10, balance=0):                 # Construct an instance of the bank account class
         self.int_rate = int_rate
         self.balance = balance
+        BankAccount.all_accounts.append(self)
+        self.account_num = len(BankAccount.all_accounts)
 
     def deposit(self, amount):                                  # Add amount to the bank account balance
         self.balance += amount
@@ -21,13 +25,12 @@ class BankAccount:
             self.balance -= amount
         else:
             print(f"{f'Insufficient funds to withdraw ${amount} from account balance of ${self.balance} ':*<100}")
-            self.balance -= 5
-            print(f"{f' Charging $5 due to insufficient balance, new account balance is ${self.balance}':*>100}")
+            self.balance -= (5 + amount)
+            print(f"{f'Charging $5 due to insufficient balance, new account balance is ${self.balance} ':*<100}\n")
         return self
     
     def display_account_info(self):
-        utl.print_desc_center("bank account info")
-        print(f"{f' balance : ${self.balance} ::: interest rate : {self.int_rate} ':^100}\n")
+        print(f'account # : {self.account_num} ::: balance : ${self.balance} ::: interest rate : {self.int_rate} ')
         return self
 
     def yield_interest(self):
@@ -37,14 +40,17 @@ class BankAccount:
 
 # //// MAIN EXECUTABLE SECTION /////////////////////////////
 
-account_1 = BankAccount(6,1000)
-account_1.display_account_info()
+account_1 = BankAccount(6,1000)                             # Create 2 accounts
+account_2 = BankAccount(3,25000)
 
-utl.print_desc("Depositing $10")
-account_1.deposit(10).display_account_info()
+utl.print_desc("To the first account, make 3 deposits and 1 withdrawal, then yield interest")
 
-utl.print_desc("Withdrawing $20")
-account_1.withdraw(20).display_account_info()
+account_1.display_account_info();
+print("Deposit $10, $200, and $300 then withdraw $7")
+account_1.deposit(10).deposit(200).deposit(300).withdraw(7).display_account_info()
+print()
 
-utl.print_desc("attempting to withdraw $2000")
-account_1.withdraw(2000).display_account_info()
+utl.print_desc("To the second account, make 2 deposits and 4 withdrawals, then yield interest")
+
+account_2.display_account_info\();
+print("Deposit $25000 and $50000, next withdraw $8, $80, $800, $8000, then yield interest")
