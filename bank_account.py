@@ -52,5 +52,6 @@ print()
 
 utl.print_desc("To the second account, make 2 deposits and 4 withdrawals, then yield interest")
 
-account_2.display_account_info\();
+account_2.display_account_info();
 print("Deposit $25000 and $50000, next withdraw $8, $80, $800, $8000, then yield interest")
+account_2.deposit(25000).deposit(50000).display_account_info()
