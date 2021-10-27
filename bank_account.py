@@ -13,13 +13,22 @@ class BankAccount:
         self.balance = balance
 
     def deposit(self, amount):                                  # Add amount to the bank account balance
-        pass
+        self.balance += amount
+        return self
 
-    def withdraw(self, amount):
-        pass
+    def withdraw(self, amount):                                 # Subtract amount from the bank account
+        if (self.balance-amount) >= 0:
+            self.balance -= amount
+        else:
+            print(f"{f'Insufficient funds to withdraw ${amount} from account balance of ${self.balance} ':*<100}")
+            self.balance -= 5
+            print(f"{f' Charging $5 due to insufficient balance, new account balance is ${self.balance}':*>100}")
+        return self
     
     def display_account_info(self):
-        pass
+        utl.print_desc_center("bank account info")
+        print(f"{f' balance : ${self.balance} ::: interest rate : {self.int_rate} ':^100}\n")
+        return self
 
     def yield_interest(self):
         pass
@@ -29,4 +38,13 @@ class BankAccount:
 # //// MAIN EXECUTABLE SECTION /////////////////////////////
 
 account_1 = BankAccount(6,1000)
+account_1.display_account_info()
 
+utl.print_desc("Depositing $10")
+account_1.deposit(10).display_account_info()
+
+utl.print_desc("Withdrawing $20")
+account_1.withdraw(20).display_account_info()
+
+utl.print_desc("attempting to withdraw $2000")
+account_1.withdraw(2000).display_account_info()
