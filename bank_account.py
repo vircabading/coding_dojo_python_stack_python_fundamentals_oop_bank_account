@@ -46,12 +46,15 @@ account_2 = BankAccount(3,25000)
 utl.print_desc("To the first account, make 3 deposits and 1 withdrawal, then yield interest")
 
 account_1.display_account_info();
+print()
 print("Deposit $10, $200, and $300 then withdraw $7")
+print()
 account_1.deposit(10).deposit(200).deposit(300).withdraw(7).display_account_info()
 print()
 
 utl.print_desc("To the second account, make 2 deposits and 4 withdrawals, then yield interest")
 
 account_2.display_account_info();
+print()
 print("Deposit $25000 and $50000, next withdraw $8, $80, $800, $8000, then yield interest")
-account_2.deposit(25000).deposit(50000).display_account_info()
+account_2.deposit(25000).deposit(50000).withdraw(8).withdraw(80).withdraw(800).withdraw(8000).display_account_info()
