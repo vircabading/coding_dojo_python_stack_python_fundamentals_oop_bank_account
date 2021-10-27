@@ -4,7 +4,6 @@
 # //////////////////////////////////////////////////////////
 
 import utl
-import math
 
 # //// CLASSES /////////////////////////////////////////////
 
@@ -39,12 +38,21 @@ class BankAccount:
         self.balance+= round(interest_gained,2)                 # add the interest gained to the account balance rounded to 2 decimal points
         return self
 
+    @classmethod
+    def print_all_account_info (cls):                           # print info on all existing bank accounts
+        utl.print_desc_center("Information on All Bank Accounts")
+        for account in cls.all_accounts:
+            account.display_account_info()
+        print()
+
 # //// FUNCTIONS ///////////////////////////////////////////
 
 # //// MAIN EXECUTABLE SECTION /////////////////////////////
 
 account_1 = BankAccount(6,1000)                                 # Create 2 accounts
 account_2 = BankAccount(3,25000)
+
+account_1.print_all_account_info()
 
 utl.print_desc("To the first account, make 3 deposits and 1 withdrawal, then yield interest")
 
@@ -61,3 +69,5 @@ account_2.display_account_info();
 print()
 print("Deposit $25000 and $50000, next withdraw $8, $80, $800, $8000, then yield interest\n")
 account_2.deposit(25000).deposit(50000).withdraw(8).withdraw(80).withdraw(800).withdraw(8000).yield_interest().display_account_info()
+
+account_1.print_all_account_info()
